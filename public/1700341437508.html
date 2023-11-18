@@ -1,18 +1,4 @@
-const express = require('express');
-const app = express();
-const sass = require('sass');
-const path = require('path');
-const OpenAI = require('openai');
-const fs = require('fs');
-require('dotenv').config();
 
-app.use(express.json());
-app.use(express.static('public'));
-
-app.post('/sendToOpenAI', async (req, res) => {
-  const question = req.body.question;
-  const openai = new OpenAI();
-  const htmlSkeleton = (content) => `
   <!DOCTYPE html>
   <html lang="en" class="govuk-template ">
 
@@ -68,7 +54,35 @@ app.post('/sendToOpenAI', async (req, res) => {
       </div>
     </header>
     <div class="govuk-width-container ">
-      ${content}
+      <main>
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset" aria-describedby="contact-preference-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">How would you like to be contacted about your application?</h1>
+      </legend>
+      <span id="contact-preference-hint" class="govuk-hint">
+        Please select your preferred method of contact
+      </span>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="email" name="contact-preference" type="checkbox" value="email">
+        <label class="govuk-label govuk-checkboxes__label" for="email">Email</label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="phone" name="contact-preference" type="checkbox" value="phone">
+        <label class="govuk-label govuk-checkboxes__label" for="phone">Phone</label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="contact-number" name="contact-preference" type="checkbox" value="contact-number">
+        <label class="govuk-label govuk-checkboxes__label" for="contact-number">Contact number</label>
+      </div>
+    </fieldset>
+  </div>
+  <p class="govuk-body">You can select one or more options.</p>
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="email-input">Email address</label>
+    <input class="govuk-input" id="email-input" name="email" type="email">
+  </div>
+</main>
     </div>
     <footer class="govuk-footer " role="contentinfo">
       <div class="govuk-width-container ">
@@ -108,47 +122,4 @@ app.post('/sendToOpenAI', async (req, res) => {
     </script>
   </body>
   </html>
-  `;
-  try {
-  	const completion = await openai.chat.completions.create({
-  		messages: [
-		{
-			role: "system", 
-			content: "You are a code generator. You only respond with HTML code that uses  components and patterns from the GOV.UK Design System, and nothing else.\n\nYou need to pick the right components, for example accordions or lists. You also need to use the right patterns and recognise when something should be formatted as a start page or a question page or a task.\n\nOnly include main content that's inside <main>. IGNORE metadata (<meta>), header (<header>) and footer (<footer>). Don't include anything that isn't code. Only respond with code as plain text without code block syntax around it."
-		},
-		{
-			role: "user",
-			content: question
-		}],
-		max_tokens: 2794,
-		model: "gpt-3.5-turbo-1106"
-  	});
-
-    const htmlContent = completion.choices[0].message.content;
-    const filename = `${Date.now()}.html`;
-
-    fs.writeFile('public/' + filename, htmlSkeleton(htmlContent), (err) => {
-      if (err) {
-        console.error('Error writing file:', err);
-      }
-    });
-
-    const responseObj = {
-      filename: filename,
-      completion: completion // or any other data you want to include
-    };
-
-    res.json(responseObj);
-
-
-  } catch(error) {
-  	console.error('Error in OpenAI API call:', error);
-      return res.status(500).send('Error processing the request');
-  }
-
-});
-
-const port = 3000;
-app.listen(port, () => {
-	console.log('Server running at http://localhost:3000');
-})
+  
