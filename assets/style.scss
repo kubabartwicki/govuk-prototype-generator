@@ -1,0 +1,31 @@
+@import "../node_modules/govuk-frontend/govuk/all";
+
+.app-example__code {
+	position: relative;
+	font-family: "GDS Transport",arial,sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-weight: 400;
+	font-size: 16px;
+	font-size: 1rem;
+	line-height: 1.25;
+}
+.app-tabs__container {
+	padding: 20px;
+	border-top: 1px solid #b1b4b6;
+	background-color: #fff;
+	border: 1px solid #b1b4b6;
+	max-width: 100%;
+}
+pre {
+	margin-top:0;
+	margin-bottom: 0;
+	white-space: normal;
+}
+@media (min-width: 40.0625em) {
+	.app-example__code {
+		font-size: 19px;
+		font-size: 1.1875rem;
+		line-height: 1.3157894737;
+	}
+}
