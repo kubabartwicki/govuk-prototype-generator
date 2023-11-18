@@ -7467,8 +7467,7 @@
 }
 
 .app-tabs__container {
-  background-color: #fff;
-  border: 2px solid #b1b4b6;
+  background-color: #f3f2f1;
   max-width: 100%;
 }
 
@@ -7507,10 +7506,6 @@ pre {
     transform: rotate(360deg);
   }
 }
-#response-placeholder.animate {
-  animation: animName 2s linear infinite;
-}
-
 .hidden {
   display: none !important;
 }
