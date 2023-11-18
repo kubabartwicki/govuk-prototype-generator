@@ -3,6 +3,8 @@ document.getElementById('question-submission').addEventListener('submit', functi
 
     const question = document.getElementById('question-input').value;
 
+    document.getElementById('response-placeholder').classList.add("animate");
+
     fetch('/sendToOpenAI', { // Adjust the URL as needed
         method: 'POST',
         headers: {
@@ -17,9 +19,9 @@ document.getElementById('question-submission').addEventListener('submit', functi
         return response.json();
     })
     .then(data => {
-        console.log('Success:', data);
-        // Handle the response data
-        document.getElementById('response-output').textContent = data;
+    	document.getElementById('response-placeholder').classList.add("hidden");
+    	document.getElementById('response-output').classList.remove("hidden");
+        document.getElementById('response-output').textContent = data.choices[0].message.content;
     })
     .catch((error) => {
         console.error('Fetch Error:', error);

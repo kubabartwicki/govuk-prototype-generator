@@ -7467,17 +7467,22 @@
 }
 
 .app-tabs__container {
-  padding: 20px;
-  border-top: 1px solid #b1b4b6;
   background-color: #fff;
-  border: 1px solid #b1b4b6;
+  border: 2px solid #b1b4b6;
   max-width: 100%;
+}
+
+#main-content {
+  padding-bottom: 80px;
 }
 
 pre {
   margin-top: 0;
   margin-bottom: 0;
-  white-space: normal;
+}
+
+.hljs {
+  background: none !important;
 }
 
 @media (min-width: 40.0625em) {
@@ -7486,6 +7491,28 @@ pre {
     font-size: 1.1875rem;
     line-height: 1.3157894737;
   }
+}
+#response-placeholder {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  display: inline-block;
+}
+
+@keyframes animName {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+#response-placeholder.animate {
+  animation: animName 2s linear infinite;
+}
+
+.hidden {
+  display: none !important;
 }
 
 /*# sourceMappingURL=style.css.map */
