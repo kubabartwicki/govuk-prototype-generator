@@ -7498,20 +7498,25 @@ pre {
   display: inline-block;
 }
 
-@keyframes animName {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 .hidden {
   display: none !important;
 }
 
 .govuk-notification-banner {
   margin-bottom: 0;
+}
+
+.govuk-button--submit, #spinner {
+  display: inline-block;
+}
+
+#spinner {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 6px;
+  /* float: right; */
+  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */
