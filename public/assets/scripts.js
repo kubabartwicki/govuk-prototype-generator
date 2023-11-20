@@ -3,8 +3,7 @@ document.getElementById('question-submission').addEventListener('submit', functi
 
 	const question = document.getElementById('question-input').value;
   document.getElementById('spinner').classList.remove('hidden');
-	// document.getElementById('response-placeholder').classList.add("animate");
-
+  
 	fetch('/sendToOpenAI', { // Adjust the URL as needed
     method: 'POST',
     headers: {
