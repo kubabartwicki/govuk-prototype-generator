@@ -1,8 +1,8 @@
 .env
 node_modules
-public/
+public
+pages
 assets/style.css
 assets/style.css.map
-pages/
 .DS_Store
 package-lock.json
