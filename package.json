@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "scss": "sass --watch assets/style.scss public/assets/style.css"
+    "scss": "sass --watch assets/style.scss assets/style.css"
   },
   "repository": {
     "type": "git",

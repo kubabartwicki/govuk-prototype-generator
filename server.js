@@ -7,7 +7,7 @@ const fs = require('fs');
 require('dotenv').config();
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(__dirname));
 
 app.post('/sendToOpenAI', async (req, res) => {
   const question = req.body.question;
@@ -127,7 +127,7 @@ app.post('/sendToOpenAI', async (req, res) => {
     const htmlContent = completion.choices[0].message.content;
     const filename = `${Date.now()}.html`;
 
-    fs.writeFile('public/' + filename, htmlSkeleton(htmlContent), (err) => {
+    fs.writeFile('pages/' + filename, htmlSkeleton(htmlContent), (err) => {
       if (err) {
         console.error('Error writing file:', err);
       }
