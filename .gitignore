@@ -1,2 +1,6 @@
 .env
 node_modules
+public/
+assets/style.css
+assets/style.css.map
+pages/
